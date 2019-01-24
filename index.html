@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="./img/icone.png">
+
+  <title>myDash</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="./css/animate.min.css">
+  <link rel="stylesheet" href="./css/tema.css">
+</head>
+
+<body>
+  <div class="preCarregamento preCarregamentoPage">
+    <i class="material-icons md-48">loop</i>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>nome</th>
+        <th>idade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <div class="preCarregamento">
+            <i class="material-icons md-48">loop</i>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="./js/storage.js" charset="utf-8"></script>
+  <script src="./js/utilitarios.js" charset="utf-8"></script>
+
+  <script type="text/javascript">
+    var db = new Storage(sessionStorage, 'banco');
+
+    setTimeout(function () {
+      document.querySelector('.preCarregamentoPage').classList.add('animated', 'bounceOutUp');
+    }, 1000*2);
+  </script>
+</body>
+</html>
