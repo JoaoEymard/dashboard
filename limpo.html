@@ -55,67 +55,6 @@
     </div>
   </nav>
 
-  <section class="container mt-5">
-    <a href="#" class="text-uppercase px-3 btn btn-sm btn-outline-secondary">
-      <span class="d-none d-md-block">adicionar</span>
-      <i class="material-icons d-block d-md-none">add</i>
-    </a>
-    <a href="#" class="text-uppercase px-3 btn btn-sm btn-outline-secondary">
-      <span class="d-none d-md-block">editar</span>
-      <i class="material-icons d-block d-md-none">edit</i>
-    </a>
-    <a href="#" class="text-uppercase px-3 btn btn-sm btn-outline-secondary">
-      <span class="d-none d-md-block">remover</span>
-      <i class="material-icons d-block d-md-none">remove</i>
-    </a>
-    <button class="text-uppercase px-3 btn btn-sm btn-outline-secondary float-right btn-table-filter" type="button" data-toggle="collapse" data-target="#tableFilters">
-      <span class="d-none d-md-block">filtrar</span>
-      <i class="material-icons d-block d-md-none">filter_list</i>
-    </button>
-
-    <div id="tableFilters" class="collapse mt-3">
-      <form action="">
-        <div class="form-row">
-          <div class="col-12 col-sm-6">
-            <div class="form-group">
-              <label class="mb-0">Status:</label>
-              <select class="form-control form-control-sm" name="status">
-                <option value="0">Todos</option>
-                <option value="1">Ativos</option>
-                <option value="2">Inativos</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6">
-            <div class="form-group">
-              <label class="mb-0">Buscar:</label>
-              <input type="text" name="pesquisa" class="form-control form-control-sm">
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <table class="table table-sm table-hover mt-3">
-      <thead class="thead-light">
-        <tr>
-          <th>Nome</th>
-          <th>Idade</th>
-          <th>Profissão</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td colspan="3">
-            <div class="preCarregamento">
-              <i class="material-icons">loop</i>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -127,14 +66,6 @@
   <script src="./js/geral.js" charset="utf-8"></script>
 
   <script type="text/javascript">
-
-  $('#tableFilters').on('hidden.bs.collapse', function () {
-    document.querySelector('.btn-table-filter span').innerText = 'filtrar'
-  })
-  $('#tableFilters').on('shown.bs.collapse', function () {
-    document.querySelector('.btn-table-filter span').innerText = 'aplicar'
-  })
-
   </script>
 </body>
 </html>
