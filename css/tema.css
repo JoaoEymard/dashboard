@@ -6,6 +6,13 @@ html, body {
 }
 /* [Fim] Estilos globais */
 
+/* [Inicio] Estilos globais bootstrap */
+.form-control, .btn {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* [Fim] Estilos globais bootstrap */
+
 /* [Inicio] Animação de carregamento */
 .preCarregamento {
   position: relative;

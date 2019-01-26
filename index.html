@@ -23,13 +23,19 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary pt-3 pb-2">
     <div class="container">
-      <a class="navbar-brand ml-2 text-white">ESTAC</a>
+      <a class="navbar-brand ml-2 pt-0 text-white">ESTAC</a>
       <div class="navbar-nav ml-auto d-flex flex-row">
-        <a class="nav-item nav-link text-uppercase mx-1 d-none d-lg-block" href="">
-          <i class="material-icons text-white">menu</i>
+        <a class="nav-item nav-link text-uppercase mr-4 d-none d-lg-block" href="">
+          <span class="text-uppercase text-white">coimbra</span>
+        </a>
+        <a class="nav-item nav-link text-uppercase mx-2 mx-lg-1">
+          <i class="material-icons animated infinite rotateIn" style="animation-direction: reverse; animation-timing-function: linear;">loop</i>
         </a>
         <a class="nav-item nav-link text-uppercase mx-2 mx-lg-1 d-block d-lg-none" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarPrincipal">
           <i class="material-icons text-white">menu</i>
+        </a>
+        <a class="nav-item nav-link text-uppercase mx-2 mx-lg-1" href="#">
+          <i class="material-icons text-white">notifications</i>
         </a>
         <a class="nav-item nav-link text-uppercase mx-2 mx-lg-1" href="#">
           <i class="material-icons text-white">person</i>
@@ -76,20 +82,18 @@
     <div id="tableFilters" class="collapse mt-3">
       <form action="">
         <div class="form-row">
-          <div class="col-12 col-sm-6">
+          <div class="col-12 col-sm-4">
             <div class="form-group">
-              <label class="mb-0">Status:</label>
-              <select class="form-control form-control-sm" name="status">
-                <option value="0">Todos</option>
+              <select class="form-control border-0 text-secondary" name="status">
+                <option value="0">Todos os status</option>
                 <option value="1">Ativos</option>
                 <option value="2">Inativos</option>
               </select>
             </div>
           </div>
-          <div class="col-12 col-sm-6">
+          <div class="col-12 col-sm-8">
             <div class="form-group">
-              <label class="mb-0">Buscar:</label>
-              <input type="text" name="pesquisa" class="form-control form-control-sm">
+              <input type="text" name="pesquisa" class="form-control border-0 text-secondary" placeholder="Buscar:">
             </div>
           </div>
         </div>
