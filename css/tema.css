@@ -7,7 +7,7 @@ html, body {
 /* [Fim] Estilos globais */
 
 /* [Inicio] Estilos globais bootstrap */
-.form-control, .btn {
+.form-control, .btn, button {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -41,3 +41,26 @@ html, body {
   font-size: 70px;
 }
 /* [Fim] Animação de carregamento */
+
+/* [Inicio] Alertas */
+.box-alerts {
+  bottom: 20px;
+  right: 0;
+  min-width: 35%;
+  max-width: 50%;
+}
+.box-alerts .alert {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+.box-alerts .alert button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  padding-right: 30px;
+  padding-left: 15px;
+  text-shadow: none;
+}
+/* [Fim] Alertas */
