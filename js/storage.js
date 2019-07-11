@@ -1,83 +1,127 @@
 'use strict';
 class Storage {
-  constructor (storage, storageName) {
-    this._storageName = storageName;
-    this._storage = storage;
+  _s = null;
+  _sn = null;
+  _c = {
+    fnOnChange: null,
+    fnGetServer: null
   }
+
+  constructor (storage, storageName, config) {
+    this._s = storage;
+    this._sn = storageName;
+    this._c.fnOnChange = config.onChange;
+    this._c.fnGetServer = config.getServer;
+
+    this.onChange();
+  }
+
+  get v () { return JSON.parse( this._s.getItem(this._sn) ); }
+  set v (el) {
+    try {
+
+      this._s.setItem( this._sn, JSON.stringify(el) );
+      this._c.fnOnChange ? this._c.fnOnChange(this) : null;
+
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  clear () {
+    try {
+
+      this._s.removeItem( this._sn );
+
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  count () { return this.v.length }
+
+  isObject () { return typeof this.v === 'object'; }
+  isArray () { return this.isObject ? Array.isArray(this.v) : false }
 
   push (obj) {
     try {
-      const arr = this.arr;
-      const id = arr.push(obj);
 
-      this.arr = arr;
-      return id-1;
-    } catch (e) {
-      return false;
-    }
-  }
-  remove (index) {
-    try {
-      var arr = this.arr;
-      delete arr[index];
+      if (!this.v) { this.v = obj; return 0; }
+      var el = this.v;
 
-      this.arr = arr.filter(e => e);
-      return true;
+      if (!this.isArray()) el = [el];
+      if (!Array.isArray(obj)) obj = [obj];
+
+      this.v = el.concat(obj);
+      return this.count() -1;
+
     } catch (e) {
-      return false;
+      console.error(e);
+      return -1;
     }
   }
-  filter (callback) {
+  remove (ind) {
     try {
-      return this.arr.filter(callback);
+
+      if (!this.isArray() && parseInt(ind) !== 0) { throw new Error('Não encontrado') };
+      if (!this.isArray() && parseInt(ind) === 0) return this.clear();
+
+      var arr = this.v;
+      arr.splice(parseInt(ind), 1);
+      this.v = arr;
+      return this;
+
     } catch (e) {
-      return false;
-    }
-  }
-  edit (callback) {
-    try {
-      return this.arr = this.arr.map(callback);
-    } catch (e) {
-      return false;
+      console.error(e);
     }
   }
 
-  get clear () {
+  map (fnMap) {
     try {
-      this.arr = [];
-      return true;
+
+      this.v = this.v.map(fnMap);
+      return this;
+
     } catch (e) {
-      return false;
+      console.error(e);
     }
   }
-  get destroy () {
+  find (fnFind) {
     try {
-      this._storage.clear( this._storageName );
-      return true;
+
+      if (!this.isArray()) return this.v;
+      return fnFind ? this.v.find(fnFind) : this.v.find(e => e);
+
     } catch (e) {
-      return false;
+      console.error(e);
+    }
+  }
+  filter (fnFilter) {
+    try {
+
+      if (!this.isArray()) return this.v;
+      return fnFilter ? this.v.filter(fnFilter) : this.v.filter(e => e);
+
+    } catch (e) {
+      console.error(e);
     }
   }
 
-  set arr (arr) {
+  onChange () {
+    if (this._c.fnOnChange && (this._s === localStorage)) window.addEventListener('storage', (ev) => {
+      if ( ev.key === this._sn ) this._c.fnOnChange(this);
+    });
+  }
+  getServer () {
     try {
-      if (Array.isArray( arr )) {
-        this._storage.setItem( this._storageName, JSON.stringify(arr) );
-        return true;
+
+      if (this._c.fnGetServer) {
+        this._c.fnGetServer().then(res => this.v = res)
       } else {
-        return false;
+        throw new Error('Função ajax não especificada');
       }
+
     } catch (e) {
-      return false;
+      console.error(e);
     }
-  }
-  get arr () {
-    return JSON.parse( this._storage.getItem(this._storageName) );
-  }
-  get storageName () {
-    return this._storageName;
-  }
-  get count () {
-    return this.arr.length;
   }
 }
