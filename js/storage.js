@@ -27,6 +27,8 @@ class Storage {
       console.error(e);
     }
   }
+  set fnOnChange (fn) { this._c.fnOnChange = fn }
+  set fnGetServer (fn) { this._c.fnGetServer = fn }
 
   clear () {
     try {
